@@ -37,7 +37,8 @@ create_container() {
 
     docker run -it \
         --privileged \
-        --name ${CONTAINER_NAME} \
+	--gpus all \
+	--name ${CONTAINER_NAME} \
         --network host \
         --ipc host \
         -e DISPLAY=$DISPLAY \
