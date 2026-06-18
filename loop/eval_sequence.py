@@ -89,33 +89,34 @@ def build_football_sequence(dt: float) -> List[Tuple[Segment, int]]:
         Segment("stand_ready",           vx= 0.0, vy= 0.0, yaw= 0.0, duration_s=3.0),
 
         # ── Phase 1: kickoff ──────────────────────────────────────────────
-        Segment("kickoff_sprint",        vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=1.5),
+        Segment("kickoff_walk",          vx= 1.0, vy= 0.0, yaw= 0.0, duration_s=1.5),
+        Segment("kickoff_sprint",        vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=2.0),
 
         # ── Phase 2: diagonal cut right (sprint + strafe) ─────────────────
-        Segment("cut_diagonal_right",    vx= 2.0, vy=-1.0, yaw= 0.0, duration_s=1.5),
-        Segment("reaccelerate",          vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=1.5),
+        Segment("cut_diagonal_right",    vx= 2.0, vy=-1.0, yaw= 0.0, duration_s=3.0),
+        Segment("reaccelerate",          vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=3.0),
 
         # ── Phase 3: diagonal cut left ────────────────────────────────────
-        Segment("cut_diagonal_left",     vx= 2.0, vy= 1.0, yaw= 0.0, duration_s=1.5),
-        Segment("sprint_after_cut",      vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=1.5),
+        Segment("cut_diagonal_left",     vx= 2.0, vy= 1.0, yaw= 0.0, duration_s=3.0),
+        Segment("sprint_after_cut",      vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=3.0),
 
         # ── Phase 4: lateral repositioning (pure strafe) ──────────────────
-        Segment("strafe_right",          vx= 0.0, vy=-1.0, yaw= 0.0, duration_s=1.5),
-        Segment("strafe_left",           vx= 0.0, vy= 1.0, yaw= 0.0, duration_s=1.5),
+        Segment("strafe_right",          vx= 0.0, vy=-1.0, yaw= 0.0, duration_s=3.0),
+        Segment("strafe_left",           vx= 0.0, vy= 1.0, yaw= 0.0, duration_s=3.0),
 
         # ── Phase 5: sprint with lateral drift ────────────────────────────
-        Segment("sprint_drift_right",    vx= 2.0, vy=-0.5, yaw= 0.0, duration_s=1.5),
+        Segment("sprint_drift_right",    vx= 2.0, vy=-0.5, yaw= 0.0, duration_s=3.0),
 
         # ── Phase 6: quick pivot + new direction ──────────────────────────
         Segment("pivot_left_60",         vx= 0.5, vy= 0.0, yaw= 1.0, duration_s=pivot_s),
-        Segment("sprint_new_direction",  vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=1.5),
+        Segment("sprint_new_direction",  vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=3.0),
 
         # ── Phase 7: defender retreat (backward + lateral) ────────────────
-        Segment("retreat_diagonal",      vx=-1.0, vy=-0.5, yaw= 0.0, duration_s=1.5),
-        Segment("strafe_reposition",     vx= 0.0, vy= 1.0, yaw= 0.0, duration_s=1.5),
+        Segment("retreat_diagonal",      vx=-1.0, vy=-0.5, yaw= 0.0, duration_s=3.0),
+        Segment("strafe_reposition",     vx= 0.0, vy= 1.0, yaw= 0.0, duration_s=3.0),
 
         # ── Phase 8: final maximum sprint ─────────────────────────────────
-        Segment("final_sprint",          vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=1.5),
+        Segment("final_sprint",          vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=3.0),
     ]
     return [(seg, max(1, round(seg.duration_s / dt))) for seg in segments]
 

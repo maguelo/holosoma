@@ -12,7 +12,7 @@ One experiment = one row. Details and metrics in `experiments/<id>/`.
 | exp_006 | 2026-06-15 | sprint stage 3 (reward fix) | exp_004 (model_45899.pt) | tracking_lin **5.0**/σ0.5, feet_phase **2.0**, lin_vel_x [1.0, 2.5], yaw ±0.2, tracking_ang 2.0/σ0.2 | 10k (45899→55898, no crash) | tracking_lin 4.05/5.0=0.81 ✅, ep_len 1001; eval: vx=1.73 m/s (cmd 2.1), 82% aerial phase, yaw drift -26° | ✅ PROMOTED — real sprint with aerial phase; yaw drift improved vs exp_004 (52°→26°) but could be reduced further |
 | exp_007 | 2026-06-16 | unified locomotion | exp_006 (model_55898.pt) | lin_vel_x [-1.5, 3.0] (backwards+sprint), yaw ±1.0, gait [0.4,1.0]s variable, tracking_lin 5.0/feet_phase 2.0, 15k iters | 15k (55898→70897, no crash) | tracking_lin 3.51/5.0=0.70 ⚠️, tracking_ang 1.06/2.0=0.53, ep_len 1001/1001 ✅, no falls; eval: backwards ✅, turn ✅, sprint very unstable ❌ | ⚠️ PARTIAL PROMOTION — backwards+turns ok, sprint degraded by variable gait. Fixed in exp_008: narrow gait |
 | exp_008 | 2026-06-17 | unified stage 2 (sprint fix) | exp_007 (model_70897.pt) | gait 0.5±0.1→[0.4,0.6]s (removes slow cadences at high speed), rest unchanged | 10k (70897→80896, no crash) | tracking_lin 3.60/5.0=0.72 ✅ (+2% vs exp_007), tracking_ang 1.08/2.0=0.54, ep_len 1001/1001 ✅; eval: sprint still very unstable, robot about to fall, COM too far forward | ⚠️ PARTIAL — gait fixed but torso leans forward during sprint. Fix in exp_009: base_height penalty + stronger orientation |
-| exp_009 | 2026-06-18 | unified stage 3 (forward lean fix) | exp_008 (model_80896.pt) | penalty_orientation -10→**-20**, add **base_height -3.0** (desired 0.89m), rest unchanged | — | ⏸ READY TO LAUNCH |
+| exp_009 | 2026-06-18 | unified stage 3 (forward lean fix) | exp_008 (model_80896.pt) | penalty_orientation -10→**-20**, add **base_height -3.0** (desired 0.89m), rest unchanged | — | ⏸ READY TO LAUNCH (`make train-unified3`) |
 
 ## Conventions
 
@@ -142,34 +142,48 @@ python src/holosoma/holosoma/eval_agent.py \
   command:g1-29dof-unified-turn
 ```
 
-### Scripted trajectory — comparative eval (2026-06-18)
+### Scripted trajectory eval (2026-06-18)
 
-Same sequence run on two checkpoints to compare stability vs speed. Script: `loop/eval_sequence.py`.
+Script: `loop/eval_sequence.py` — supports `--circuit basic` and `--circuit football`.
 
-Current sequence (`build_sequence()` in the script):
-1. Walk forward      — vx=1.0, 5s
-2. Run forward       — vx=2.0, 5s
-3. Turn 90° left     — yaw=1.0, π/2 s
-4. Strafe left       — vy=1.0, 5s
-5. Walk forward      — vx=1.0, 5s
-6. Run forward       — vx=2.0, 5s
-7. Turn 90° left     — yaw=1.0, π/2 s
-8. Strafe right      — vy=-1.0, 5s
-9. Walk forward      — vx=1.0, 5s
-10. Run return       — vx=2.0, 5s
-11. Walk backward    — vx=-1.0, 5s
-
-#### `make eval-sequence` — model_24999.pt (exp_001, walking)
-
-> **Slower but very stable. No falls. vx=2.0 segments run at policy ceiling (~1.0 m/s) since model was trained up to 1.0 m/s — robot ignores the out-of-distribution command and walks at max comfortable speed.**
-
-#### `make eval-sequence-unified` — model_80896.pt (exp_008, unified2)
-
-> **Faster and visibly more dynamic on vx=2.0 segments. Some instability (forward lean at sprint, known exp_008 issue) but robot did not fall. Encouraging — confirms unified model handles the full sequence. Forward lean to be fixed in exp_009.**
-
-**Conclusion (2026-06-18):** Direction is correct. exp_009 (stronger orientation + base_height penalty) should close the stability gap.
+#### Eval targets
 
 ```bash
-make eval-sequence           # walking model  → /tmp/eval_sequence_walking.npz
-make eval-sequence-unified   # unified model  → /tmp/eval_sequence_unified.npz
+make eval-sequence            # basic circuit, model_24999.pt  → /tmp/eval_sequence_walking.npz
+make eval-sequence-unified    # basic circuit, model_80896.pt  → /tmp/eval_sequence_unified.npz
+make eval-football            # football circuit, model_80896.pt → /tmp/eval_football_unified.npz
+make eval-football-walking    # football circuit, model_24999.pt → /tmp/eval_football_walking.npz
 ```
+
+#### Basic circuit observations
+
+| Model | Speed | Stability | Notes |
+|-------|-------|-----------|-------|
+| model_24999.pt (walking, exp_001) | slow (~1.0 m/s) | ✅ very stable, no falls | vx=2.0 ignored — out of training range |
+| model_80896.pt (unified2, exp_008) | faster (~1.5 m/s real) | ⚠️ forward lean at sprint | completes circuit without falling |
+
+**Conclusion:** Direction correct. exp_009 should fix the forward lean and unlock cleaner sprints.
+
+#### Football circuit observations
+
+- 3s standing warm-up before every circuit
+- `kickoff_walk` (vx=1.0) → `kickoff_sprint` (vx=2.0): gradual ramp-up works well
+- Diagonal segments (vx=2.0 + vy=±1.0): robot freezes if magnitude > ~2.0 m/s combined — **limit vx to 1.5 on diagonal segments** when combined with vy=±1.0
+- Circuit still being tuned — segment durations at 3.0s each
+
+#### Next steps for eval
+
+1. Run `make eval-football` after exp_009 finishes training — expect forward lean to be gone
+2. If diagonals still freeze: reduce diagonal vx to 1.5 (confirmed needed for exp_008, may improve with exp_009)
+3. Once exp_009 stable: push vx up gradually toward 2.5 m/s to find real ceiling
+
+---
+
+## Next training steps
+
+1. **Launch exp_009** → `make train-unified3`
+   - Fixes forward lean (penalty_orientation -20, base_height -3.0)
+   - Expected: cleaner sprint posture, diagonal movement at vx=2.0 without freezing
+2. **exp_010 (diagonal training)** — if exp_009 fixes lean but diagonals still weak:
+   - Add explicit diagonal command ranges during training: sample vx+vy simultaneously
+   - This will train the model on combined velocity vectors it hasn't seen explicitly
