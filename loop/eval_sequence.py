@@ -66,57 +66,64 @@ def build_sequence(dt: float) -> List[Tuple[Segment, int]]:
 
 
 def build_football_sequence(dt: float) -> List[Tuple[Segment, int]]:
-    """Football circuit — pushes diagonal movement, cuts, sprints and quick pivots.
+    """Football circuit — sprint, square, agility, diamond, pivot, figure-8.
 
-    Sequence narrative (unified model, vx up to 2.5 m/s):
-      1.  Kickoff sprint         — flat out forward
-      2.  Cut right diagonal     — sprint + strafe right simultaneously
-      3.  Straighten & accelerate
-      4.  Cut left diagonal      — sprint + strafe left simultaneously
-      5.  Pure sprint            — reaccelerate after cut
-      6.  Strafe right (lateral) — goalkeeper-style repositioning
-      7.  Sprint + drift right   — running with slight lateral offset
-      8.  Quick pivot left       — sharp yaw turn at partial speed
-      9.  Sprint new direction
-      10. Diagonal back-right    — retreat while drifting right (defender move)
-      11. Strafe left reposition
-      12. Final sprint           — maximum effort
+    Phases:
+      0. Stand     — 3 s idle
+      1. Sprint    — walk inertia (0.5s) + full sprint (2s)
+      2. Square    — strafe R, retreat, strafe L, sprint out
+      3. Agility   — strafe L/R at max vy, sprint out
+      4. Diamond   — fwd-R → fwd-L → back-L → back-R at vx=vy=1.5, sprint out
+                     vertices: (0,0)→(2.25,-2.25)→(4.5,0)→(2.25,+2.25)→(0,0)
+      5. Pivot     — yaw=2.0 rad/s for 2.0s ≈ 229° rotation, then sprint
+      6. Figure-8  — two full circles (yaw=±2.0 rad/s, 2π s each ≈ 2 rev), stop
     """
-    pivot_s = math.pi / 3  # 60° turn at 1.0 rad/s ≈ 1.05 s  (faster than 90°)
+    circle_s   = 2 * math.pi  # duration for one loop at yaw=2.0 rad/s → 2 full rotations
+
+    velocity_x = 1.5
+    velocity_y = 1.5
 
     segments = [
-        # ── Phase 0: stand still ─────────────────────────────────────────
+        # ── Phase 0: stand ───────────────────────────────────────────────
         Segment("stand_ready",           vx= 0.0, vy= 0.0, yaw= 0.0, duration_s=3.0),
 
-        # ── Phase 1: kickoff ──────────────────────────────────────────────
-        Segment("kickoff_walk",          vx= 1.0, vy= 0.0, yaw= 0.0, duration_s=1.5),
-        Segment("kickoff_sprint",        vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=2.0),
+        # ── Phase 1: sprint ──────────────────────────────────────────────
+        Segment("walk_inertia",          vx= 1.0, vy= 0.0, yaw= 0.0, duration_s=0.5),
+        Segment("sprint",                vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=2.0),
 
-        # ── Phase 2: diagonal cut right (sprint + strafe) ─────────────────
-        Segment("cut_diagonal_right",    vx= 2.0, vy=-1.0, yaw= 0.0, duration_s=3.0),
-        Segment("reaccelerate",          vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=3.0),
+        # ── Phase 2: square ──────────────────────────────────────────────
+        Segment("strafe_right",          vx= 0.0, vy=-1.5, yaw= 0.0, duration_s=1.5),
+        Segment("retreat",               vx=-1.5, vy= 0.0, yaw= 0.0, duration_s=1.5),
+        Segment("strafe_left",           vx= 0.0, vy= 1.5, yaw= 0.0, duration_s=1.5),
+        Segment("walk_inertia",          vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=0.5),
+        Segment("sprint",                vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=2.0),
 
-        # ── Phase 3: diagonal cut left ────────────────────────────────────
-        Segment("cut_diagonal_left",     vx= 2.0, vy= 1.0, yaw= 0.0, duration_s=3.0),
-        Segment("sprint_after_cut",      vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=3.0),
+        # ── Phase 3: agility ─────────────────────────────────────────────
+        Segment("agility_strafe_left",   vx= 0.0, vy= 2.0, yaw= 0.0, duration_s=1.5),
+        Segment("agility_strafe_right",  vx= 0.0, vy=-2.0, yaw= 0.0, duration_s=1.5),
+        Segment("walk_inertia",          vx= 1.0, vy= 0.0, yaw= 0.0, duration_s=0.5),
+        Segment("sprint",                vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=2.0),
 
-        # ── Phase 4: lateral repositioning (pure strafe) ──────────────────
-        Segment("strafe_right",          vx= 0.0, vy=-1.0, yaw= 0.0, duration_s=3.0),
-        Segment("strafe_left",           vx= 0.0, vy= 1.0, yaw= 0.0, duration_s=3.0),
+        # ── Phase 4: diamond ─────────────────────────────────────────────
+        Segment("diag_fwd_right",        vx= velocity_x, vy=-velocity_y, yaw= 0.0, duration_s=1.5),
+        # Segment("pause",                 vx= 0.0, vy= 0.0, yaw= 0.0, duration_s=0.5),
+        Segment("diag_fwd_left",         vx= velocity_x, vy= velocity_y, yaw= 0.0, duration_s=1.5),
+        # Segment("pause",                 vx= 0.0, vy= 0.0, yaw= 0.0, duration_s=0.5),
+        Segment("diag_back_left",        vx=-velocity_x, vy= velocity_y, yaw= 0.0, duration_s=1.5),
+        # Segment("pause",                 vx= 0.0, vy= 0.0, yaw= 0.0, duration_s=0.5),
+        Segment("diag_back_right",       vx=-velocity_x, vy=-velocity_y, yaw= 0.0, duration_s=1.5),
+        Segment("walk_inertia",          vx= 1.0, vy= 0.0, yaw= 0.0, duration_s=0.5),
+        Segment("sprint",                vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=2.0),
 
-        # ── Phase 5: sprint with lateral drift ────────────────────────────
-        Segment("sprint_drift_right",    vx= 2.0, vy=-0.5, yaw= 0.0, duration_s=3.0),
+        # ── Phase 5: pivot ───────────────────────────────────────────────
+        Segment("pivot_180",             vx= 0.0, vy= 0.0, yaw= 2.0, duration_s=2.0),
+        Segment("walk_inertia",          vx= 1.0, vy= 0.0, yaw= 0.0, duration_s=0.5),
+        Segment("sprint",                vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=2.0),
 
-        # ── Phase 6: quick pivot + new direction ──────────────────────────
-        Segment("pivot_left_60",         vx= 0.5, vy= 0.0, yaw= 1.0, duration_s=pivot_s),
-        Segment("sprint_new_direction",  vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=3.0),
-
-        # ── Phase 7: defender retreat (backward + lateral) ────────────────
-        Segment("retreat_diagonal",      vx=-1.0, vy=-0.5, yaw= 0.0, duration_s=3.0),
-        Segment("strafe_reposition",     vx= 0.0, vy= 1.0, yaw= 0.0, duration_s=3.0),
-
-        # ── Phase 8: final maximum sprint ─────────────────────────────────
-        Segment("final_sprint",          vx= 2.0, vy= 0.0, yaw= 0.0, duration_s=3.0),
+        # ── Phase 6: figure-8 ────────────────────────────────────────────
+        Segment("figure8_circle_left",   vx= 2.0, vy= 0.0, yaw= 2.0, duration_s=circle_s),
+        Segment("figure8_circle_right",  vx= 2.0, vy= 0.0, yaw=-2.0, duration_s=circle_s),
+        Segment("stop",                  vx= 0.0, vy= 0.0, yaw= 0.0, duration_s=2.0),
     ]
     return [(seg, max(1, round(seg.duration_s / dt))) for seg in segments]
 

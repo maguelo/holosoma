@@ -30,3 +30,8 @@ _(nothing currently running)_
 - [ ] If diagonals freeze in football circuit: lower diagonal vx to 1.5 (vx+vy combined > 2.0 → out of distribution)
 - [ ] exp_010 (if needed): train with explicit diagonal command ranges (vx+vy simultaneously sampled)
 - [ ] Push all commits to origin: `git push`
+
+
+# NOTES
+Strafe is not stable, it is not fully horizontal 
+strafe diagonal backward is not stable, is not simetric.
