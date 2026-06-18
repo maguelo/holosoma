@@ -141,3 +141,35 @@ python src/holosoma/holosoma/eval_agent.py \
   --recording.config.output-path /tmp/eval_unified_turn.npz \
   command:g1-29dof-unified-turn
 ```
+
+### Scripted trajectory — comparative eval (2026-06-18)
+
+Same sequence run on two checkpoints to compare stability vs speed. Script: `loop/eval_sequence.py`.
+
+Current sequence (`build_sequence()` in the script):
+1. Walk forward      — vx=1.0, 5s
+2. Run forward       — vx=2.0, 5s
+3. Turn 90° left     — yaw=1.0, π/2 s
+4. Strafe left       — vy=1.0, 5s
+5. Walk forward      — vx=1.0, 5s
+6. Run forward       — vx=2.0, 5s
+7. Turn 90° left     — yaw=1.0, π/2 s
+8. Strafe right      — vy=-1.0, 5s
+9. Walk forward      — vx=1.0, 5s
+10. Run return       — vx=2.0, 5s
+11. Walk backward    — vx=-1.0, 5s
+
+#### `make eval-sequence` — model_24999.pt (exp_001, walking)
+
+> **Slower but very stable. No falls. vx=2.0 segments run at policy ceiling (~1.0 m/s) since model was trained up to 1.0 m/s — robot ignores the out-of-distribution command and walks at max comfortable speed.**
+
+#### `make eval-sequence-unified` — model_80896.pt (exp_008, unified2)
+
+> **Faster and visibly more dynamic on vx=2.0 segments. Some instability (forward lean at sprint, known exp_008 issue) but robot did not fall. Encouraging — confirms unified model handles the full sequence. Forward lean to be fixed in exp_009.**
+
+**Conclusion (2026-06-18):** Direction is correct. exp_009 (stronger orientation + base_height penalty) should close the stability gap.
+
+```bash
+make eval-sequence           # walking model  → /tmp/eval_sequence_walking.npz
+make eval-sequence-unified   # unified model  → /tmp/eval_sequence_unified.npz
+```

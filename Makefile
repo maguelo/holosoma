@@ -251,6 +251,44 @@ eval-unified-turn: start  ## Eval unified: giro en el sitio 1.0 rad/s (exp_007)
 	     --recording.config.output-path /tmp/eval_unified_turn.npz \
 	     command:g1-29dof-unified-turn"
 
+.PHONY: eval-sequence
+eval-sequence: start  ## Scripted trajectory with model_24999.pt (walking, exp_001)
+	xhost +local:docker 2>/dev/null || true
+	docker exec -w /workspace $(CONTAINER) bash -c \
+	  "source scripts/source_mujoco_setup.sh && \
+	   python /workspace/loop/eval_sequence.py \
+	     --checkpoint logs/hv-g1-manager/20260605_141231-g1_29dof_manager-locomotion/model_24999.pt \
+	     --output /tmp/eval_sequence_walking.npz"
+
+.PHONY: eval-sequence-unified
+eval-sequence-unified: start  ## Basic circuit with model_80896.pt (unified, exp_008)
+	xhost +local:docker 2>/dev/null || true
+	docker exec -w /workspace $(CONTAINER) bash -c \
+	  "source scripts/source_mujoco_setup.sh && \
+	   python /workspace/loop/eval_sequence.py \
+	     --checkpoint logs/hv-g1-manager/20260617_214143-g1_29dof_unified2_manager-locomotion/model_80896.pt \
+	     --output /tmp/eval_sequence_unified.npz"
+
+.PHONY: eval-football
+eval-football: start  ## Football circuit (diagonals, cuts, pivots, sprints) with model_80896.pt (unified, exp_008)
+	xhost +local:docker 2>/dev/null || true
+	docker exec -w /workspace $(CONTAINER) bash -c \
+	  "source scripts/source_mujoco_setup.sh && \
+	   python /workspace/loop/eval_sequence.py \
+	     --circuit football \
+	     --checkpoint logs/hv-g1-manager/20260617_214143-g1_29dof_unified2_manager-locomotion/model_80896.pt \
+	     --output /tmp/eval_football_unified.npz"
+
+.PHONY: eval-football-walking
+eval-football-walking: start  ## Football circuit with model_24999.pt (walking, exp_001) — baseline comparison
+	xhost +local:docker 2>/dev/null || true
+	docker exec -w /workspace $(CONTAINER) bash -c \
+	  "source scripts/source_mujoco_setup.sh && \
+	   python /workspace/loop/eval_sequence.py \
+	     --circuit football \
+	     --checkpoint logs/hv-g1-manager/20260605_141231-g1_29dof_manager-locomotion/model_24999.pt \
+	     --output /tmp/eval_football_walking.npz"
+
 .PHONY: eval-custom
 eval-custom: start  ## Eval custom: make eval-custom CHECKPOINT=logs/.../model.pt PRESET=command:g1-29dof-run-forward
 	@[ -n "$(CHECKPOINT)" ] || (echo "Uso: make eval-custom CHECKPOINT=<ruta> [PRESET=command:...] [MAX_STEPS=500] [NPZ=/tmp/out.npz]" && exit 1)
