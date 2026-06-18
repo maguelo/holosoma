@@ -72,8 +72,43 @@ g1_29dof_running_command = CommandManagerCfg(
     },
 )
 
-# Eval-only: comando fijo "correr hacia delante" para evaluación controlada
-# Eval-only: avanzar recto a 1.0 m/s — para walking (gait 1.0s) y jog/exp_002 (gait 0.5s)
+# Eval-only: walk forward at 1.0 m/s — gait 1.0s matching exp_001 walking training
+g1_29dof_walk_forward_command = CommandManagerCfg(
+    params={
+        "locomotion_command_resampling_time": 10.0,
+    },
+    setup_terms={
+        "locomotion_gait": CommandTermCfg(
+            func="holosoma.managers.command.terms.locomotion:LocomotionGait",
+            params={
+                "gait_period": 1.0,
+                "gait_period_randomization_width": 0.0,
+            },
+        ),
+        "locomotion_command": CommandTermCfg(
+            func="holosoma.managers.command.terms.locomotion:LocomotionCommand",
+            params={
+                "command_ranges": {
+                    "lin_vel_x": [1.0, 1.0],
+                    "lin_vel_y": [0.0, 0.0],
+                    "ang_vel_yaw": [0.0, 0.0],
+                    "heading": [0.0, 0.0],
+                },
+                "stand_prob": 0.0,
+            },
+        ),
+    },
+    reset_terms={
+        "locomotion_gait": CommandTermCfg(func="holosoma.managers.command.terms.locomotion:LocomotionGait"),
+        "locomotion_command": CommandTermCfg(func="holosoma.managers.command.terms.locomotion:LocomotionCommand"),
+    },
+    step_terms={
+        "locomotion_gait": CommandTermCfg(func="holosoma.managers.command.terms.locomotion:LocomotionGait"),
+        "locomotion_command": CommandTermCfg(func="holosoma.managers.command.terms.locomotion:LocomotionCommand"),
+    },
+)
+
+# Eval-only: avanzar recto a 1.0 m/s — para jog/exp_002 (gait 0.5s)
 g1_29dof_run_forward_command = CommandManagerCfg(
     params={
         "locomotion_command_resampling_time": 10.0,
@@ -518,6 +553,7 @@ __all__ = [
     "g1_29dof_strafe_training_command",
     "g1_29dof_strafe_left_command",
     "g1_29dof_strafe_right_command",
+    "g1_29dof_walk_forward_command",
     "g1_29dof_unified_command",
     "g1_29dof_unified2_command",
     "g1_29dof_unified_backward_command",

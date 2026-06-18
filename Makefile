@@ -127,7 +127,7 @@ train-custom: start  ## Entrenamiento custom: make train-custom EXP=exp:g1-29dof
 # ── Eval ───────────────────────────────────────────────────────────────────────
 
 .PHONY: eval-walking
-eval-walking: start  ## Eval walking (comando aleatorio x,y ±1.0 m/s)
+eval-walking: start  ## Eval walking forward 1.0 m/s (exp_001)
 	xhost +local:docker 2>/dev/null || true
 	docker exec -w /workspace $(CONTAINER) bash -c \
 	  "source scripts/source_mujoco_setup.sh && \
@@ -137,7 +137,21 @@ eval-walking: start  ## Eval walking (comando aleatorio x,y ±1.0 m/s)
 	     --simulator.config.mujoco-backend CLASSIC \
 	     --randomization.ignore-unsupported True \
 	     --recording.config.enabled \
-	     --recording.config.output-path /tmp/eval_walking.npz"
+	     --recording.config.output-path /tmp/eval_walking.npz \
+	     command:g1-29dof-walk-forward"
+
+.PHONY: eval-turn
+eval-turn: start  ## Eval walking with random commands (turns, lateral, etc.) (exp_001)
+	xhost +local:docker 2>/dev/null || true
+	docker exec -w /workspace $(CONTAINER) bash -c \
+	  "source scripts/source_mujoco_setup.sh && \
+	   python src/holosoma/holosoma/eval_agent.py \
+	     --checkpoint logs/hv-g1-manager/20260605_141231-g1_29dof_manager-locomotion/model_24999.pt \
+	     --training.max-eval-steps $(MAX_STEPS) \
+	     --simulator.config.mujoco-backend CLASSIC \
+	     --randomization.ignore-unsupported True \
+	     --recording.config.enabled \
+	     --recording.config.output-path /tmp/eval_turn.npz"
 
 .PHONY: eval-jog
 eval-jog: start  ## Eval jog/trote a 1.0 m/s (exp_002)
