@@ -1,0 +1,629 @@
+{
+  "run_dir": "/workspace/logs/hv-g1-manager/20260615_071843-g1_29dof_sprint3_manager-locomotion",
+  "tags": {
+    "Train/mean_reward": {
+      "first": {
+        "iter": 45899,
+        "value": 0.94032883644104
+      },
+      "last": {
+        "iter": 55898,
+        "value": 22.810909271240234
+      },
+      "history": [
+        {
+          "iter": 45899,
+          "value": 0.9403
+        },
+        {
+          "iter": 46899,
+          "value": 20.7337
+        },
+        {
+          "iter": 47899,
+          "value": 17.3258
+        },
+        {
+          "iter": 48899,
+          "value": 16.8886
+        },
+        {
+          "iter": 49899,
+          "value": 19.0134
+        },
+        {
+          "iter": 50899,
+          "value": 23.7122
+        },
+        {
+          "iter": 51899,
+          "value": 22.5435
+        },
+        {
+          "iter": 52899,
+          "value": 23.8384
+        },
+        {
+          "iter": 53899,
+          "value": 20.1437
+        },
+        {
+          "iter": 54899,
+          "value": 24.1155
+        },
+        {
+          "iter": 55898,
+          "value": 22.8109
+        }
+      ]
+    },
+    "Train/mean_episode_length": {
+      "first": {
+        "iter": 45899,
+        "value": 12.930000305175781
+      },
+      "last": {
+        "iter": 55898,
+        "value": 1001.0
+      },
+      "history": [
+        {
+          "iter": 45899,
+          "value": 12.93
+        },
+        {
+          "iter": 46899,
+          "value": 1001.0
+        },
+        {
+          "iter": 47899,
+          "value": 1001.0
+        },
+        {
+          "iter": 48899,
+          "value": 996.65
+        },
+        {
+          "iter": 49899,
+          "value": 1001.0
+        },
+        {
+          "iter": 50899,
+          "value": 1001.0
+        },
+        {
+          "iter": 51899,
+          "value": 1001.0
+        },
+        {
+          "iter": 52899,
+          "value": 1001.0
+        },
+        {
+          "iter": 53899,
+          "value": 1001.0
+        },
+        {
+          "iter": 54899,
+          "value": 1001.0
+        },
+        {
+          "iter": 55898,
+          "value": 1001.0
+        }
+      ]
+    },
+    "Episode/rew_tracking_lin_vel": {
+      "first": {
+        "iter": 45899,
+        "value": 0.004268628545105457
+      },
+      "last": {
+        "iter": 55898,
+        "value": 4.045138359069824
+      },
+      "history": [
+        {
+          "iter": 45899,
+          "value": 0.0043
+        },
+        {
+          "iter": 46899,
+          "value": 4.0409
+        },
+        {
+          "iter": 47899,
+          "value": 4.0169
+        },
+        {
+          "iter": 48899,
+          "value": 3.9986
+        },
+        {
+          "iter": 49899,
+          "value": 4.0143
+        },
+        {
+          "iter": 50899,
+          "value": 4.0569
+        },
+        {
+          "iter": 51899,
+          "value": 4.0476
+        },
+        {
+          "iter": 52899,
+          "value": 3.9954
+        },
+        {
+          "iter": 53899,
+          "value": 4.0625
+        },
+        {
+          "iter": 54899,
+          "value": 4.037
+        },
+        {
+          "iter": 55898,
+          "value": 4.0451
+        }
+      ]
+    },
+    "Episode/rew_tracking_ang_vel": {
+      "first": {
+        "iter": 45899,
+        "value": 0.011744827032089233
+      },
+      "last": {
+        "iter": 55898,
+        "value": 1.1091411113739014
+      },
+      "history": [
+        {
+          "iter": 45899,
+          "value": 0.0117
+        },
+        {
+          "iter": 46899,
+          "value": 1.0925
+        },
+        {
+          "iter": 47899,
+          "value": 1.0855
+        },
+        {
+          "iter": 48899,
+          "value": 1.0963
+        },
+        {
+          "iter": 49899,
+          "value": 1.0985
+        },
+        {
+          "iter": 50899,
+          "value": 1.1022
+        },
+        {
+          "iter": 51899,
+          "value": 1.1186
+        },
+        {
+          "iter": 52899,
+          "value": 1.136
+        },
+        {
+          "iter": 53899,
+          "value": 1.0979
+        },
+        {
+          "iter": 54899,
+          "value": 1.1137
+        },
+        {
+          "iter": 55898,
+          "value": 1.1091
+        }
+      ]
+    },
+    "Episode/rew_alive": {
+      "first": {
+        "iter": 45899,
+        "value": 0.027643565088510513
+      },
+      "last": {
+        "iter": 55898,
+        "value": 2.0020267963409424
+      },
+      "history": [
+        {
+          "iter": 45899,
+          "value": 0.0276
+        },
+        {
+          "iter": 46899,
+          "value": 2.002
+        },
+        {
+          "iter": 47899,
+          "value": 2.002
+        },
+        {
+          "iter": 48899,
+          "value": 1.9936
+        },
+        {
+          "iter": 49899,
+          "value": 2.002
+        },
+        {
+          "iter": 50899,
+          "value": 2.002
+        },
+        {
+          "iter": 51899,
+          "value": 2.002
+        },
+        {
+          "iter": 52899,
+          "value": 2.002
+        },
+        {
+          "iter": 53899,
+          "value": 2.002
+        },
+        {
+          "iter": 54899,
+          "value": 2.002
+        },
+        {
+          "iter": 55898,
+          "value": 2.002
+        }
+      ]
+    },
+    "Episode/rew_feet_phase": {
+      "first": {
+        "iter": 45899,
+        "value": 0.015941958874464035
+      },
+      "last": {
+        "iter": 55898,
+        "value": 1.2795805931091309
+      },
+      "history": [
+        {
+          "iter": 45899,
+          "value": 0.0159
+        },
+        {
+          "iter": 46899,
+          "value": 1.3792
+        },
+        {
+          "iter": 47899,
+          "value": 1.3023
+        },
+        {
+          "iter": 48899,
+          "value": 1.3232
+        },
+        {
+          "iter": 49899,
+          "value": 1.3426
+        },
+        {
+          "iter": 50899,
+          "value": 1.3019
+        },
+        {
+          "iter": 51899,
+          "value": 1.2676
+        },
+        {
+          "iter": 52899,
+          "value": 1.2411
+        },
+        {
+          "iter": 53899,
+          "value": 1.2829
+        },
+        {
+          "iter": 54899,
+          "value": 1.2527
+        },
+        {
+          "iter": 55898,
+          "value": 1.2796
+        }
+      ]
+    },
+    "Episode/rew_penalty_orientation": {
+      "first": {
+        "iter": 45899,
+        "value": -3.235066469642334e-05
+      },
+      "last": {
+        "iter": 55898,
+        "value": -0.02587432600557804
+      },
+      "history": [
+        {
+          "iter": 45899,
+          "value": -0.0
+        },
+        {
+          "iter": 46899,
+          "value": -0.0299
+        },
+        {
+          "iter": 47899,
+          "value": -0.0281
+        },
+        {
+          "iter": 48899,
+          "value": -0.0256
+        },
+        {
+          "iter": 49899,
+          "value": -0.0263
+        },
+        {
+          "iter": 50899,
+          "value": -0.0231
+        },
+        {
+          "iter": 51899,
+          "value": -0.0296
+        },
+        {
+          "iter": 52899,
+          "value": -0.0295
+        },
+        {
+          "iter": 53899,
+          "value": -0.0264
+        },
+        {
+          "iter": 54899,
+          "value": -0.0255
+        },
+        {
+          "iter": 55898,
+          "value": -0.0259
+        }
+      ]
+    },
+    "Episode/rew_penalty_close_feet_xy": {
+      "first": {
+        "iter": 45899,
+        "value": 0.0
+      },
+      "last": {
+        "iter": 55898,
+        "value": -0.01872222125530243
+      },
+      "history": [
+        {
+          "iter": 45899,
+          "value": 0.0
+        },
+        {
+          "iter": 46899,
+          "value": -0.0125
+        },
+        {
+          "iter": 47899,
+          "value": -0.0213
+        },
+        {
+          "iter": 48899,
+          "value": -0.0128
+        },
+        {
+          "iter": 49899,
+          "value": -0.0123
+        },
+        {
+          "iter": 50899,
+          "value": -0.0176
+        },
+        {
+          "iter": 51899,
+          "value": -0.0154
+        },
+        {
+          "iter": 52899,
+          "value": -0.0221
+        },
+        {
+          "iter": 53899,
+          "value": -0.0209
+        },
+        {
+          "iter": 54899,
+          "value": -0.0112
+        },
+        {
+          "iter": 55898,
+          "value": -0.0187
+        }
+      ]
+    },
+    "Env/penalty_scale": {
+      "first": {
+        "iter": 45899,
+        "value": 0.10031308978796005
+      },
+      "last": {
+        "iter": 55898,
+        "value": 1.0
+      },
+      "history": [
+        {
+          "iter": 45899,
+          "value": 0.1003
+        },
+        {
+          "iter": 46899,
+          "value": 1.0
+        },
+        {
+          "iter": 47899,
+          "value": 1.0
+        },
+        {
+          "iter": 48899,
+          "value": 1.0
+        },
+        {
+          "iter": 49899,
+          "value": 1.0
+        },
+        {
+          "iter": 50899,
+          "value": 1.0
+        },
+        {
+          "iter": 51899,
+          "value": 1.0
+        },
+        {
+          "iter": 52899,
+          "value": 1.0
+        },
+        {
+          "iter": 53899,
+          "value": 1.0
+        },
+        {
+          "iter": 54899,
+          "value": 1.0
+        },
+        {
+          "iter": 55898,
+          "value": 1.0
+        }
+      ]
+    },
+    "Loss/KL": {
+      "first": {
+        "iter": 45899,
+        "value": 0.0110557796433568
+      },
+      "last": {
+        "iter": 55898,
+        "value": 0.012977334670722485
+      },
+      "history": [
+        {
+          "iter": 45899,
+          "value": 0.0111
+        },
+        {
+          "iter": 46899,
+          "value": 0.0128
+        },
+        {
+          "iter": 47899,
+          "value": 0.0127
+        },
+        {
+          "iter": 48899,
+          "value": 0.0142
+        },
+        {
+          "iter": 49899,
+          "value": 0.013
+        },
+        {
+          "iter": 50899,
+          "value": 0.0119
+        },
+        {
+          "iter": 51899,
+          "value": 0.0127
+        },
+        {
+          "iter": 52899,
+          "value": 0.0145
+        },
+        {
+          "iter": 53899,
+          "value": 0.0125
+        },
+        {
+          "iter": 54899,
+          "value": 0.015
+        },
+        {
+          "iter": 55898,
+          "value": 0.013
+        }
+      ]
+    },
+    "Policy/mean_noise_std": {
+      "first": {
+        "iter": 45899,
+        "value": 0.2219170182943344
+      },
+      "last": {
+        "iter": 55898,
+        "value": 0.27148905396461487
+      },
+      "history": [
+        {
+          "iter": 45899,
+          "value": 0.2219
+        },
+        {
+          "iter": 46899,
+          "value": 0.2749
+        },
+        {
+          "iter": 47899,
+          "value": 0.2754
+        },
+        {
+          "iter": 48899,
+          "value": 0.276
+        },
+        {
+          "iter": 49899,
+          "value": 0.2745
+        },
+        {
+          "iter": 50899,
+          "value": 0.2722
+        },
+        {
+          "iter": 51899,
+          "value": 0.2711
+        },
+        {
+          "iter": 52899,
+          "value": 0.2695
+        },
+        {
+          "iter": 53899,
+          "value": 0.2757
+        },
+        {
+          "iter": 54899,
+          "value": 0.27
+        },
+        {
+          "iter": 55898,
+          "value": 0.2715
+        }
+      ]
+    }
+  },
+  "summary": {
+    "final_iteration": 55898,
+    "mean_reward": 22.8109,
+    "episode_length": 1001.0,
+    "tracking_lin_vel": 4.0451,
+    "tracking_ang_vel": 1.1091,
+    "alive": 2.002
+  }
+}

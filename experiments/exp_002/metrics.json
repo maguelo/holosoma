@@ -1,0 +1,629 @@
+{
+  "run_dir": "/workspace/logs/hv-g1-manager/20260610_070927-g1_29dof_running_manager-locomotion",
+  "tags": {
+    "Train/mean_reward": {
+      "first": {
+        "iter": 24999,
+        "value": 1.3519874811172485
+      },
+      "last": {
+        "iter": 35995,
+        "value": 48.26357650756836
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 1.352
+        },
+        {
+          "iter": 26106,
+          "value": 41.8531
+        },
+        {
+          "iter": 27226,
+          "value": 42.2
+        },
+        {
+          "iter": 28318,
+          "value": 45.0034
+        },
+        {
+          "iter": 29414,
+          "value": 42.5605
+        },
+        {
+          "iter": 30507,
+          "value": 45.2363
+        },
+        {
+          "iter": 31609,
+          "value": 44.1177
+        },
+        {
+          "iter": 32706,
+          "value": 44.2217
+        },
+        {
+          "iter": 33811,
+          "value": 45.5972
+        },
+        {
+          "iter": 34902,
+          "value": 42.3759
+        },
+        {
+          "iter": 35995,
+          "value": 48.2636
+        }
+      ]
+    },
+    "Train/mean_episode_length": {
+      "first": {
+        "iter": 24999,
+        "value": 13.6575345993042
+      },
+      "last": {
+        "iter": 35995,
+        "value": 1001.0
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 13.6575
+        },
+        {
+          "iter": 26106,
+          "value": 1001.0
+        },
+        {
+          "iter": 27226,
+          "value": 997.98
+        },
+        {
+          "iter": 28318,
+          "value": 1001.0
+        },
+        {
+          "iter": 29414,
+          "value": 1001.0
+        },
+        {
+          "iter": 30507,
+          "value": 1001.0
+        },
+        {
+          "iter": 31609,
+          "value": 1001.0
+        },
+        {
+          "iter": 32706,
+          "value": 1001.0
+        },
+        {
+          "iter": 33811,
+          "value": 1001.0
+        },
+        {
+          "iter": 34902,
+          "value": 1001.0
+        },
+        {
+          "iter": 35995,
+          "value": 1001.0
+        }
+      ]
+    },
+    "Episode/rew_tracking_lin_vel": {
+      "first": {
+        "iter": 24999,
+        "value": 0.014687404036521912
+      },
+      "last": {
+        "iter": 35995,
+        "value": 1.626283049583435
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 0.0147
+        },
+        {
+          "iter": 26106,
+          "value": 1.5259
+        },
+        {
+          "iter": 27226,
+          "value": 1.523
+        },
+        {
+          "iter": 28318,
+          "value": 1.6387
+        },
+        {
+          "iter": 29414,
+          "value": 1.4819
+        },
+        {
+          "iter": 30507,
+          "value": 1.4773
+        },
+        {
+          "iter": 31609,
+          "value": 1.6073
+        },
+        {
+          "iter": 32706,
+          "value": 1.4487
+        },
+        {
+          "iter": 33811,
+          "value": 1.544
+        },
+        {
+          "iter": 34902,
+          "value": 1.4339
+        },
+        {
+          "iter": 35995,
+          "value": 1.6263
+        }
+      ]
+    },
+    "Episode/rew_tracking_ang_vel": {
+      "first": {
+        "iter": 24999,
+        "value": 0.008244765922427177
+      },
+      "last": {
+        "iter": 35995,
+        "value": 0.6014922261238098
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 0.0082
+        },
+        {
+          "iter": 26106,
+          "value": 0.5953
+        },
+        {
+          "iter": 27226,
+          "value": 0.5917
+        },
+        {
+          "iter": 28318,
+          "value": 0.5926
+        },
+        {
+          "iter": 29414,
+          "value": 0.6046
+        },
+        {
+          "iter": 30507,
+          "value": 0.5982
+        },
+        {
+          "iter": 31609,
+          "value": 0.593
+        },
+        {
+          "iter": 32706,
+          "value": 0.5993
+        },
+        {
+          "iter": 33811,
+          "value": 0.6002
+        },
+        {
+          "iter": 34902,
+          "value": 0.5942
+        },
+        {
+          "iter": 35995,
+          "value": 0.6015
+        }
+      ]
+    },
+    "Episode/rew_alive": {
+      "first": {
+        "iter": 24999,
+        "value": 0.029315069317817688
+      },
+      "last": {
+        "iter": 35995,
+        "value": 2.0020270347595215
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 0.0293
+        },
+        {
+          "iter": 26106,
+          "value": 2.002
+        },
+        {
+          "iter": 27226,
+          "value": 1.9955
+        },
+        {
+          "iter": 28318,
+          "value": 2.002
+        },
+        {
+          "iter": 29414,
+          "value": 2.002
+        },
+        {
+          "iter": 30507,
+          "value": 2.002
+        },
+        {
+          "iter": 31609,
+          "value": 2.002
+        },
+        {
+          "iter": 32706,
+          "value": 2.002
+        },
+        {
+          "iter": 33811,
+          "value": 2.002
+        },
+        {
+          "iter": 34902,
+          "value": 2.002
+        },
+        {
+          "iter": 35995,
+          "value": 2.002
+        }
+      ]
+    },
+    "Episode/rew_feet_phase": {
+      "first": {
+        "iter": 24999,
+        "value": 0.02618064358830452
+      },
+      "last": {
+        "iter": 35995,
+        "value": 4.2229838371276855
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 0.0262
+        },
+        {
+          "iter": 26106,
+          "value": 4.0854
+        },
+        {
+          "iter": 27226,
+          "value": 4.1239
+        },
+        {
+          "iter": 28318,
+          "value": 4.1853
+        },
+        {
+          "iter": 29414,
+          "value": 4.1644
+        },
+        {
+          "iter": 30507,
+          "value": 4.2066
+        },
+        {
+          "iter": 31609,
+          "value": 4.2035
+        },
+        {
+          "iter": 32706,
+          "value": 4.2277
+        },
+        {
+          "iter": 33811,
+          "value": 4.1976
+        },
+        {
+          "iter": 34902,
+          "value": 4.2249
+        },
+        {
+          "iter": 35995,
+          "value": 4.223
+        }
+      ]
+    },
+    "Episode/rew_penalty_orientation": {
+      "first": {
+        "iter": 24999,
+        "value": -2.4778091756161302e-05
+      },
+      "last": {
+        "iter": 35995,
+        "value": -0.019587505608797073
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": -0.0
+        },
+        {
+          "iter": 26106,
+          "value": -0.018
+        },
+        {
+          "iter": 27226,
+          "value": -0.0145
+        },
+        {
+          "iter": 28318,
+          "value": -0.0157
+        },
+        {
+          "iter": 29414,
+          "value": -0.0153
+        },
+        {
+          "iter": 30507,
+          "value": -0.0158
+        },
+        {
+          "iter": 31609,
+          "value": -0.0155
+        },
+        {
+          "iter": 32706,
+          "value": -0.0161
+        },
+        {
+          "iter": 33811,
+          "value": -0.0131
+        },
+        {
+          "iter": 34902,
+          "value": -0.012
+        },
+        {
+          "iter": 35995,
+          "value": -0.0196
+        }
+      ]
+    },
+    "Episode/rew_penalty_close_feet_xy": {
+      "first": {
+        "iter": 24999,
+        "value": 0.0
+      },
+      "last": {
+        "iter": 35995,
+        "value": -0.005842105019837618
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 0.0
+        },
+        {
+          "iter": 26106,
+          "value": -0.0069
+        },
+        {
+          "iter": 27226,
+          "value": -0.0132
+        },
+        {
+          "iter": 28318,
+          "value": -0.0084
+        },
+        {
+          "iter": 29414,
+          "value": -0.0095
+        },
+        {
+          "iter": 30507,
+          "value": -0.0048
+        },
+        {
+          "iter": 31609,
+          "value": -0.0082
+        },
+        {
+          "iter": 32706,
+          "value": -0.0059
+        },
+        {
+          "iter": 33811,
+          "value": -0.0098
+        },
+        {
+          "iter": 34902,
+          "value": -0.0051
+        },
+        {
+          "iter": 35995,
+          "value": -0.0058
+        }
+      ]
+    },
+    "Env/penalty_scale": {
+      "first": {
+        "iter": 24999,
+        "value": 0.10031308978796005
+      },
+      "last": {
+        "iter": 35995,
+        "value": 1.0
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 0.1003
+        },
+        {
+          "iter": 26106,
+          "value": 1.0
+        },
+        {
+          "iter": 27226,
+          "value": 1.0
+        },
+        {
+          "iter": 28318,
+          "value": 1.0
+        },
+        {
+          "iter": 29414,
+          "value": 1.0
+        },
+        {
+          "iter": 30507,
+          "value": 1.0
+        },
+        {
+          "iter": 31609,
+          "value": 1.0
+        },
+        {
+          "iter": 32706,
+          "value": 1.0
+        },
+        {
+          "iter": 33811,
+          "value": 1.0
+        },
+        {
+          "iter": 34902,
+          "value": 1.0
+        },
+        {
+          "iter": 35995,
+          "value": 1.0
+        }
+      ]
+    },
+    "Loss/KL": {
+      "first": {
+        "iter": 24999,
+        "value": 0.014652632176876068
+      },
+      "last": {
+        "iter": 35995,
+        "value": 0.0161110982298851
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 0.0147
+        },
+        {
+          "iter": 26106,
+          "value": 0.0134
+        },
+        {
+          "iter": 27226,
+          "value": 0.0135
+        },
+        {
+          "iter": 28318,
+          "value": 0.0161
+        },
+        {
+          "iter": 29414,
+          "value": 0.0133
+        },
+        {
+          "iter": 30507,
+          "value": 0.0157
+        },
+        {
+          "iter": 31609,
+          "value": 0.0161
+        },
+        {
+          "iter": 32706,
+          "value": 0.0152
+        },
+        {
+          "iter": 33811,
+          "value": 0.0124
+        },
+        {
+          "iter": 34902,
+          "value": 0.016
+        },
+        {
+          "iter": 35995,
+          "value": 0.0161
+        }
+      ]
+    },
+    "Policy/mean_noise_std": {
+      "first": {
+        "iter": 24999,
+        "value": 0.206673726439476
+      },
+      "last": {
+        "iter": 35995,
+        "value": 0.2671552300453186
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 0.2067
+        },
+        {
+          "iter": 26106,
+          "value": 0.2709
+        },
+        {
+          "iter": 27226,
+          "value": 0.2672
+        },
+        {
+          "iter": 28318,
+          "value": 0.2706
+        },
+        {
+          "iter": 29414,
+          "value": 0.2679
+        },
+        {
+          "iter": 30507,
+          "value": 0.266
+        },
+        {
+          "iter": 31609,
+          "value": 0.2668
+        },
+        {
+          "iter": 32706,
+          "value": 0.269
+        },
+        {
+          "iter": 33811,
+          "value": 0.2674
+        },
+        {
+          "iter": 34902,
+          "value": 0.267
+        },
+        {
+          "iter": 35995,
+          "value": 0.2672
+        }
+      ]
+    }
+  },
+  "summary": {
+    "final_iteration": 35995,
+    "mean_reward": 48.2636,
+    "episode_length": 1001.0,
+    "tracking_lin_vel": 1.6263,
+    "tracking_ang_vel": 0.6015,
+    "alive": 2.002
+  }
+}

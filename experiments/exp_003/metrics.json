@@ -1,0 +1,629 @@
+{
+  "run_dir": "/workspace/logs/hv-g1-manager/20260611_230114-g1_29dof_strafe_manager-locomotion",
+  "tags": {
+    "Train/mean_reward": {
+      "first": {
+        "iter": 24999,
+        "value": 1.4884090423583984
+      },
+      "last": {
+        "iter": 34998,
+        "value": 24.60774040222168
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 1.4884
+        },
+        {
+          "iter": 25999,
+          "value": 21.2474
+        },
+        {
+          "iter": 26999,
+          "value": 26.2407
+        },
+        {
+          "iter": 27999,
+          "value": 22.7526
+        },
+        {
+          "iter": 28999,
+          "value": 25.5324
+        },
+        {
+          "iter": 29999,
+          "value": 27.1324
+        },
+        {
+          "iter": 30999,
+          "value": 25.6119
+        },
+        {
+          "iter": 31999,
+          "value": 24.1251
+        },
+        {
+          "iter": 32999,
+          "value": 27.3894
+        },
+        {
+          "iter": 33999,
+          "value": 26.7051
+        },
+        {
+          "iter": 34998,
+          "value": 24.6077
+        }
+      ]
+    },
+    "Train/mean_episode_length": {
+      "first": {
+        "iter": 24999,
+        "value": 13.6575345993042
+      },
+      "last": {
+        "iter": 34998,
+        "value": 1001.0
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 13.6575
+        },
+        {
+          "iter": 25999,
+          "value": 1001.0
+        },
+        {
+          "iter": 26999,
+          "value": 1001.0
+        },
+        {
+          "iter": 27999,
+          "value": 991.58
+        },
+        {
+          "iter": 28999,
+          "value": 1001.0
+        },
+        {
+          "iter": 29999,
+          "value": 1001.0
+        },
+        {
+          "iter": 30999,
+          "value": 1001.0
+        },
+        {
+          "iter": 31999,
+          "value": 1001.0
+        },
+        {
+          "iter": 32999,
+          "value": 1001.0
+        },
+        {
+          "iter": 33999,
+          "value": 1001.0
+        },
+        {
+          "iter": 34998,
+          "value": 1001.0
+        }
+      ]
+    },
+    "Episode/rew_tracking_lin_vel": {
+      "first": {
+        "iter": 24999,
+        "value": 0.010810263454914093
+      },
+      "last": {
+        "iter": 34998,
+        "value": 1.5023809671401978
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 0.0108
+        },
+        {
+          "iter": 25999,
+          "value": 1.4936
+        },
+        {
+          "iter": 26999,
+          "value": 1.4721
+        },
+        {
+          "iter": 27999,
+          "value": 1.4787
+        },
+        {
+          "iter": 28999,
+          "value": 1.4758
+        },
+        {
+          "iter": 29999,
+          "value": 1.5122
+        },
+        {
+          "iter": 30999,
+          "value": 1.5048
+        },
+        {
+          "iter": 31999,
+          "value": 1.5313
+        },
+        {
+          "iter": 32999,
+          "value": 1.5515
+        },
+        {
+          "iter": 33999,
+          "value": 1.5844
+        },
+        {
+          "iter": 34998,
+          "value": 1.5024
+        }
+      ]
+    },
+    "Episode/rew_tracking_ang_vel": {
+      "first": {
+        "iter": 24999,
+        "value": 0.012666518799960613
+      },
+      "last": {
+        "iter": 34998,
+        "value": 0.9999645352363586
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 0.0127
+        },
+        {
+          "iter": 25999,
+          "value": 1.0008
+        },
+        {
+          "iter": 26999,
+          "value": 1.0219
+        },
+        {
+          "iter": 27999,
+          "value": 1.0046
+        },
+        {
+          "iter": 28999,
+          "value": 1.0124
+        },
+        {
+          "iter": 29999,
+          "value": 1.0083
+        },
+        {
+          "iter": 30999,
+          "value": 1.0147
+        },
+        {
+          "iter": 31999,
+          "value": 1.0195
+        },
+        {
+          "iter": 32999,
+          "value": 1.008
+        },
+        {
+          "iter": 33999,
+          "value": 1.0145
+        },
+        {
+          "iter": 34998,
+          "value": 1.0
+        }
+      ]
+    },
+    "Episode/rew_alive": {
+      "first": {
+        "iter": 24999,
+        "value": 0.014657534658908844
+      },
+      "last": {
+        "iter": 34998,
+        "value": 1.0010133981704712
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 0.0147
+        },
+        {
+          "iter": 25999,
+          "value": 1.001
+        },
+        {
+          "iter": 26999,
+          "value": 1.001
+        },
+        {
+          "iter": 27999,
+          "value": 0.9922
+        },
+        {
+          "iter": 28999,
+          "value": 1.001
+        },
+        {
+          "iter": 29999,
+          "value": 1.001
+        },
+        {
+          "iter": 30999,
+          "value": 1.001
+        },
+        {
+          "iter": 31999,
+          "value": 1.001
+        },
+        {
+          "iter": 32999,
+          "value": 1.001
+        },
+        {
+          "iter": 33999,
+          "value": 1.001
+        },
+        {
+          "iter": 34998,
+          "value": 1.001
+        }
+      ]
+    },
+    "Episode/rew_feet_phase": {
+      "first": {
+        "iter": 24999,
+        "value": 0.051516883075237274
+      },
+      "last": {
+        "iter": 34998,
+        "value": 4.120086193084717
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 0.0515
+        },
+        {
+          "iter": 25999,
+          "value": 4.169
+        },
+        {
+          "iter": 26999,
+          "value": 4.1065
+        },
+        {
+          "iter": 27999,
+          "value": 4.145
+        },
+        {
+          "iter": 28999,
+          "value": 4.1362
+        },
+        {
+          "iter": 29999,
+          "value": 4.1457
+        },
+        {
+          "iter": 30999,
+          "value": 4.1418
+        },
+        {
+          "iter": 31999,
+          "value": 4.1254
+        },
+        {
+          "iter": 32999,
+          "value": 4.141
+        },
+        {
+          "iter": 33999,
+          "value": 4.1273
+        },
+        {
+          "iter": 34998,
+          "value": 4.1201
+        }
+      ]
+    },
+    "Episode/rew_penalty_orientation": {
+      "first": {
+        "iter": 24999,
+        "value": -3.470047886366956e-05
+      },
+      "last": {
+        "iter": 34998,
+        "value": -0.021037494763731956
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": -0.0
+        },
+        {
+          "iter": 25999,
+          "value": -0.0299
+        },
+        {
+          "iter": 26999,
+          "value": -0.0227
+        },
+        {
+          "iter": 27999,
+          "value": -0.021
+        },
+        {
+          "iter": 28999,
+          "value": -0.0222
+        },
+        {
+          "iter": 29999,
+          "value": -0.0228
+        },
+        {
+          "iter": 30999,
+          "value": -0.0215
+        },
+        {
+          "iter": 31999,
+          "value": -0.0245
+        },
+        {
+          "iter": 32999,
+          "value": -0.0252
+        },
+        {
+          "iter": 33999,
+          "value": -0.0231
+        },
+        {
+          "iter": 34998,
+          "value": -0.021
+        }
+      ]
+    },
+    "Episode/rew_penalty_close_feet_xy": {
+      "first": {
+        "iter": 24999,
+        "value": 0.0
+      },
+      "last": {
+        "iter": 34998,
+        "value": -0.004247311502695084
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 0.0
+        },
+        {
+          "iter": 25999,
+          "value": -0.0083
+        },
+        {
+          "iter": 26999,
+          "value": -0.0091
+        },
+        {
+          "iter": 27999,
+          "value": -0.0075
+        },
+        {
+          "iter": 28999,
+          "value": -0.0068
+        },
+        {
+          "iter": 29999,
+          "value": -0.0069
+        },
+        {
+          "iter": 30999,
+          "value": -0.0074
+        },
+        {
+          "iter": 31999,
+          "value": -0.0113
+        },
+        {
+          "iter": 32999,
+          "value": -0.0068
+        },
+        {
+          "iter": 33999,
+          "value": -0.0077
+        },
+        {
+          "iter": 34998,
+          "value": -0.0042
+        }
+      ]
+    },
+    "Env/penalty_scale": {
+      "first": {
+        "iter": 24999,
+        "value": 0.10031308978796005
+      },
+      "last": {
+        "iter": 34998,
+        "value": 1.0
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 0.1003
+        },
+        {
+          "iter": 25999,
+          "value": 1.0
+        },
+        {
+          "iter": 26999,
+          "value": 1.0
+        },
+        {
+          "iter": 27999,
+          "value": 1.0
+        },
+        {
+          "iter": 28999,
+          "value": 1.0
+        },
+        {
+          "iter": 29999,
+          "value": 1.0
+        },
+        {
+          "iter": 30999,
+          "value": 1.0
+        },
+        {
+          "iter": 31999,
+          "value": 1.0
+        },
+        {
+          "iter": 32999,
+          "value": 1.0
+        },
+        {
+          "iter": 33999,
+          "value": 1.0
+        },
+        {
+          "iter": 34998,
+          "value": 1.0
+        }
+      ]
+    },
+    "Loss/KL": {
+      "first": {
+        "iter": 24999,
+        "value": 0.01564941555261612
+      },
+      "last": {
+        "iter": 34998,
+        "value": 0.014982699416577816
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 0.0156
+        },
+        {
+          "iter": 25999,
+          "value": 0.0157
+        },
+        {
+          "iter": 26999,
+          "value": 0.0159
+        },
+        {
+          "iter": 27999,
+          "value": 0.0155
+        },
+        {
+          "iter": 28999,
+          "value": 0.0146
+        },
+        {
+          "iter": 29999,
+          "value": 0.0141
+        },
+        {
+          "iter": 30999,
+          "value": 0.0159
+        },
+        {
+          "iter": 31999,
+          "value": 0.0148
+        },
+        {
+          "iter": 32999,
+          "value": 0.0142
+        },
+        {
+          "iter": 33999,
+          "value": 0.0128
+        },
+        {
+          "iter": 34998,
+          "value": 0.015
+        }
+      ]
+    },
+    "Policy/mean_noise_std": {
+      "first": {
+        "iter": 24999,
+        "value": 0.20633447170257568
+      },
+      "last": {
+        "iter": 34998,
+        "value": 0.21890179812908173
+      },
+      "history": [
+        {
+          "iter": 24999,
+          "value": 0.2063
+        },
+        {
+          "iter": 25999,
+          "value": 0.2202
+        },
+        {
+          "iter": 26999,
+          "value": 0.2166
+        },
+        {
+          "iter": 27999,
+          "value": 0.2187
+        },
+        {
+          "iter": 28999,
+          "value": 0.2174
+        },
+        {
+          "iter": 29999,
+          "value": 0.2151
+        },
+        {
+          "iter": 30999,
+          "value": 0.217
+        },
+        {
+          "iter": 31999,
+          "value": 0.2174
+        },
+        {
+          "iter": 32999,
+          "value": 0.2157
+        },
+        {
+          "iter": 33999,
+          "value": 0.2204
+        },
+        {
+          "iter": 34998,
+          "value": 0.2189
+        }
+      ]
+    }
+  },
+  "summary": {
+    "final_iteration": 34998,
+    "mean_reward": 24.6077,
+    "episode_length": 1001.0,
+    "tracking_lin_vel": 1.5024,
+    "tracking_ang_vel": 1.0,
+    "alive": 1.001
+  }
+}
