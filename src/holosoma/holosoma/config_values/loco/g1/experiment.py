@@ -29,6 +29,7 @@ from holosoma.config_values.loco.g1.reward import (
     g1_29dof_sprint3_loco,
     g1_29dof_strafe_loco,
     g1_29dof_unified_loco,
+    g1_29dof_unified3_loco,
 )
 
 g1_29dof = ExperimentConfig(
@@ -211,4 +212,24 @@ g1_29dof_unified2 = ExperimentConfig(
     ),
 )
 
-__all__ = ["g1_29dof", "g1_29dof_fast_sac", "g1_29dof_running", "g1_29dof_strafe", "g1_29dof_sprint", "g1_29dof_sprint2", "g1_29dof_sprint3", "g1_29dof_unified", "g1_29dof_unified2"]
+g1_29dof_unified3 = ExperimentConfig(
+    env_class="holosoma.envs.locomotion.locomotion_manager.LeggedRobotLocomotionManager",
+    training=TrainingConfig(project="hv-g1-manager", name="g1_29dof_unified3_manager"),
+    algo=replace(algo.ppo, config=replace(algo.ppo.config, num_learning_iterations=10000, use_symmetry=True)),
+    simulator=simulator.mjwarp,
+    robot=robot.g1_29dof,
+    terrain=terrain.terrain_locomotion_mix,
+    observation=observation.g1_29dof_loco_single_wolinvel,
+    action=action.g1_29dof_joint_pos,
+    termination=termination.g1_29dof_termination,
+    randomization=randomization.g1_29dof_randomization,
+    command=g1_29dof_unified2_command,
+    curriculum=curriculum.g1_29dof_curriculum,
+    reward=g1_29dof_unified3_loco,
+    nightly=NightlyConfig(
+        iterations=5000,
+        metrics={"Episode/rew_tracking_ang_vel": [1.2, "inf"], "Episode/rew_tracking_lin_vel": [3.0, "inf"]},
+    ),
+)
+
+__all__ = ["g1_29dof", "g1_29dof_fast_sac", "g1_29dof_running", "g1_29dof_strafe", "g1_29dof_sprint", "g1_29dof_sprint2", "g1_29dof_sprint3", "g1_29dof_unified", "g1_29dof_unified2", "g1_29dof_unified3"]
