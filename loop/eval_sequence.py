@@ -140,7 +140,10 @@ CIRCUITS = {
 
 def parse_args(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--checkpoint", required=True, help="Path to .pt checkpoint")
+    p.add_argument("--checkpoint", required=True,
+                   help="Path to .pt checkpoint or .onnx model (requires --config when using .onnx)")
+    p.add_argument("--config", default=None,
+                   help="Path to holosoma_config.yaml — required when --checkpoint is a .onnx file")
     p.add_argument("--output", default="/tmp/eval_sequence.npz", help="Output .npz path for recording")
     p.add_argument("--no-viewer", action="store_true", help="Disable MuJoCo viewer (headless)")
     p.add_argument("--circuit", choices=list(CIRCUITS), default="basic",
@@ -172,9 +175,19 @@ def main(argv=None):
 
     init_eval_logging()
 
-    # --- load saved config from checkpoint dir ------------------------------
-    checkpoint_cfg = CheckpointConfig(checkpoint=args.checkpoint)
-    saved_cfg, saved_wandb_path = load_saved_experiment_config(checkpoint_cfg)
+    is_onnx = args.checkpoint.endswith(".onnx")
+
+    # --- load saved config from checkpoint dir (or explicit yaml for onnx) --
+    if is_onnx:
+        import yaml
+        if not args.config:
+            raise ValueError("--config <holosoma_config.yaml> is required when --checkpoint is a .onnx file")
+        with open(args.config) as f:
+            saved_cfg = ExperimentConfig(**yaml.safe_load(f))
+        saved_wandb_path = None
+    else:
+        checkpoint_cfg = CheckpointConfig(checkpoint=args.checkpoint)
+        saved_cfg, saved_wandb_path = load_saved_experiment_config(checkpoint_cfg)
     eval_cfg = saved_cfg.get_eval_config()
 
     # Override simulator settings — recording flags go via EvalCallbacksConfig, not here
@@ -212,9 +225,6 @@ def main(argv=None):
     )
     eval_log_dir.mkdir(parents=True, exist_ok=True)
 
-    checkpoint = load_checkpoint(args.checkpoint, str(eval_log_dir))
-    checkpoint_path = str(checkpoint)
-
     algo_class = get_class(tyro_config.algo._target_)
     algo = algo_class(
         device=device,
@@ -225,12 +235,28 @@ def main(argv=None):
     )
     algo.setup()
     algo.attach_checkpoint_metadata(saved_cfg, saved_wandb_path)
-    algo.load(checkpoint_path)
+
+    if is_onnx:
+        import numpy as np
+        import onnxruntime as ort
+        session = ort.InferenceSession(args.checkpoint, providers=["CPUExecutionProvider"])
+        input_name = session.get_inputs()[0].name
+        def _onnx_policy(obs: dict) -> torch.Tensor:
+            actor_obs = obs["actor_obs"].cpu().numpy().astype(np.float32)
+            actions = session.run(None, {input_name: actor_obs})[0]
+            return torch.tensor(actions, device=device)
+        print(f"[eval_sequence] Loaded ONNX policy: {args.checkpoint}  (input={input_name!r})")
+    else:
+        checkpoint = load_checkpoint(args.checkpoint, str(eval_log_dir))
+        algo.load(str(checkpoint))
 
     # --- eval setup (mirrors PPO.evaluate_policy exactly) ------------------
     algo._create_eval_callbacks()
     algo._pre_evaluate_policy()                       # eval mode + env reset + on_pre callbacks
-    algo.eval_policy = algo.get_inference_policy()    # required by _pre_eval_env_step
+    if is_onnx:
+        algo.eval_policy = _onnx_policy
+    else:
+        algo.eval_policy = algo.get_inference_policy()    # required by _pre_eval_env_step
 
     obs_dict = env.reset_all()                        # second reset → fresh obs for actor_state
     actor_state = algo._create_actor_state()
