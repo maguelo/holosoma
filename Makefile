@@ -300,6 +300,17 @@ eval-football-original: start  ## Football circuit with ppo_g1_29dof.onnx (model
 	     --config logs/hv-g1-manager/20260605_141231-g1_29dof_manager-locomotion/holosoma_config.yaml \
 	     --output /tmp/eval_football_original.npz"
 
+.PHONY: eval-football-original-fastsac
+eval-football-original-fastsac: start  ## Football circuit with fastsac_g1_29dof.onnx (modelo original del repo) — referencia upstream
+	xhost +local:docker 2>/dev/null || true
+	docker exec -w /workspace $(CONTAINER) bash -c \
+	  "source scripts/source_mujoco_setup.sh && \
+	   python /workspace/loop/eval_sequence.py \
+	     --circuit football \
+	     --checkpoint src/holosoma_inference/holosoma_inference/models/loco/g1_29dof/fastsac_g1_29dof.onnx \
+	     --config logs/hv-g1-manager/20260605_141231-g1_29dof_manager-locomotion/holosoma_config.yaml \
+	     --output /tmp/eval_football_original.npz"
+
 .PHONY: eval-custom
 eval-custom: start  ## Eval custom: make eval-custom CHECKPOINT=logs/.../model.pt PRESET=command:g1-29dof-run-forward
 	@[ -n "$(CHECKPOINT)" ] || (echo "Uso: make eval-custom CHECKPOINT=<ruta> [PRESET=command:...] [MAX_STEPS=500] [NPZ=/tmp/out.npz]" && exit 1)
